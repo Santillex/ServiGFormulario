@@ -1,0 +1,60 @@
+<h1>A VER</h1>
+<HR />
+<form (ngSubmit)="onSubmit()" [formGroup]="productForm">
+  <div class="container">
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        type="text"
+        id="nombre"
+        name="nombre"
+        formControlName="nombre"
+        class="right-align"
+        placeholder="Nombre"
+        required
+      />
+      <div
+        *ngIf="productForm.get('nombre')?.touched && productForm.get('nombre')?.errors?.['required']"
+        class="alert alert-danger"
+      >
+        Este campo es requerido.
+      </div>
+      <div
+        *ngIf="productForm.get('nombre')?.touched && productForm.get('nombre')?.errors?.['minlength']"
+        class="alert alert-danger"
+      >
+        Nombre tiene que tener mas de
+        {{productForm.get('nombre')?.errors?.['minlength']?.requiredLength}}
+        caracteres.
+      </div>
+    </mat-form-field>
+  </div>
+
+  <div class="container">
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Precio</mat-label>
+      <input
+        matInput
+        type="number"
+        id="precio"
+        name="precio"
+        formControlName="precio"
+        class="right-align"
+        placeholder="0"
+        required
+      />
+      <span _ngcontent-utp-c189="" mattextprefix="" class="ng-tns-c171-203">$&nbsp;</span>
+      <div
+        *ngIf="productForm.get('precio')?.touched && productForm.get('precio')?.errors?.['required']"
+        class="alert alert-danger"
+      >
+        Este campo es requerido.
+      </div>
+    </mat-form-field>
+  </div>
+  <div class="container">
+    <button type="submit" class="btn btn-info btn-log" [disabled]="productForm.invalid">Modificar</button>
+
+  </div> 
+</form>
